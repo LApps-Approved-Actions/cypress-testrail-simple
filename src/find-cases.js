@@ -1,5 +1,6 @@
 const fs = require('fs')
 const { getTestNames, filterByEffectiveTags } = require('find-test-names')
+const debug = require('debug')('cypress-testrail-simple')
 
 /**
  * Returns the TestRail case id number (if any) from the given full test title
@@ -25,9 +26,13 @@ function uniqueSorted(list) {
  */
 function findCasesInSpec(spec, readSpec = fs.readFileSync, tagged) {
   const source = readSpec(spec, 'utf8')
+  debug('spec: %o', spec)
+  debug('readSpec: %o', readSpec)
+  debug('tagged: %o', tagged)
+  debug('source: %o', source)
 
   let testNames
-  if (Array.isArray(tagged) && tagged.length > 0) {
+  if (tagged.length > 0) {
     const filteredTests = filterByEffectiveTags(source, tagged)
     testNames = filteredTests.map((t) => t.name)
   } else {
