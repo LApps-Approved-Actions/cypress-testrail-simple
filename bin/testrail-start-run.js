@@ -125,9 +125,6 @@ if (args['--find-specs']) {
   let tagged
   if (args['--tagged']) {
     tagged = args['--tagged']
-      .split(',')
-      .map((s) => s.trim())
-      .filter(Boolean)
     debug('tagged: %o', tagged)
   }
   const caseIds = findCases(specs, fs.readFileSync, tagged)
