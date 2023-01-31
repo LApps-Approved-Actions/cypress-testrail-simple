@@ -108,6 +108,7 @@ async function startRun({ testRailInfo, name, description, caseIds }) {
       (error) => {
         console.error('Could not create a new TestRail run')
         console.error('Response: %s', error.name)
+        console.error(error)
         console.error('Please check your TestRail configuration')
         if (json.case_ids) {
           console.error('and the case IDs: %s', json.case_ids)
